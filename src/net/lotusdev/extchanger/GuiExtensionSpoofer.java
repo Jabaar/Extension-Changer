@@ -1,4 +1,4 @@
-package me.jabaar.exspoofer.gui;
+package net.lotusdev.extchanger;
 
 import java.awt.EventQueue;
 import java.awt.Toolkit;
