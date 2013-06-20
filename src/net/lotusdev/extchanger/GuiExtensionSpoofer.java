@@ -60,9 +60,12 @@ public class GuiExtensionSpoofer extends JFrame {
 	 * Create the frame.
 	 */
 	public GuiExtensionSpoofer() {
+		/*
+		 * Lots of crap from WindowBuilder.
+		 */
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(GuiExtensionSpoofer.class.getResource("/me/jabaar/exspoofer/icons/FolderOpened_Yellow.png")));
-		setTitle("Extension Changer, by Jabaar.");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(GuiExtensionSpoofer.class.getResource("/net/lotusdev/extchanger/res/FolderOpened_Yellow.png")));
+		setTitle("Extension Changer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 311, 156);
 		contentPane = new JPanel();
@@ -76,7 +79,7 @@ public class GuiExtensionSpoofer extends JFrame {
             	changeExt();
 			}
 		});
-		btnSppof.setIcon(new ImageIcon(GuiExtensionSpoofer.class.getResource("/me/jabaar/exspoofer/icons/arrow_right.png")));
+		btnSppof.setIcon(new ImageIcon(GuiExtensionSpoofer.class.getResource("/net/lotusdev/extchanger/res/arrow_right.png")));
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -89,6 +92,9 @@ public class GuiExtensionSpoofer extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 		    	java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
 		        try {
+		        	/*
+		        	 * Small little thing to direct to webste (I stopped doing this in recent projects).
+		        	 */
 		            java.net.URI uri = new java.net.URI("http://www.lotusdev.net");
 		            desktop.browse(uri);
 		        }catch(Exception e) {
@@ -96,7 +102,7 @@ public class GuiExtensionSpoofer extends JFrame {
 		        }
 			}
 		});
-		lblJabaarbiz.setIcon(new ImageIcon(GuiExtensionSpoofer.class.getResource("/me/jabaar/exspoofer/icons/user_gray.png")));
+		lblJabaarbiz.setIcon(new ImageIcon(GuiExtensionSpoofer.class.getResource("/net/lotusdev/extchanger/res/user_gray.png")));
 		lblJabaarbiz.setForeground(Color.BLUE);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -157,6 +163,9 @@ public class GuiExtensionSpoofer extends JFrame {
 				public void actionPerformed(ActionEvent arg0) {
 				}
 			});
+			/*
+			 * All of the most common types of extensions.
+			 */
 			comboBox.setModel(new DefaultComboBoxModel(new String[] {".mp3", ".mp4", ".jar", ".txt", ".exe", ".bat", ".html", ".java", ".dat", ".psd", ".jpg", ".png", ".gif", ".sh", ".dll", ".rar", ".bin", ".wav", ".wmv", ".avi", ".tif", ".bmp", ".zip"}));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
@@ -197,6 +206,9 @@ public class GuiExtensionSpoofer extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 	
+	/**
+	 * Create the look and feel.
+	 */
 	public static void changeLookAndFeel() {
 		try {
 			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
@@ -206,6 +218,11 @@ public class GuiExtensionSpoofer extends JFrame {
 		}
 	}
 	
+	/**
+	 * Removes extension from the file name so it can be replaced.
+	 * @param s
+	 * @return
+	 */
 	public static String removeExtension(String s) {
 	    String separator = System.getProperty("file.separator");
 	    String filename;
@@ -224,6 +241,9 @@ public class GuiExtensionSpoofer extends JFrame {
 	    return filename.substring(0, extensionIndex);
 	}
 	
+	/**
+	 * Changes the extension.
+	 */
 	public static void changeExt() {	
 		long time = System.currentTimeMillis();
 		
@@ -254,6 +274,11 @@ public class GuiExtensionSpoofer extends JFrame {
 		}
 	}
 	
+	/**
+	 * Copy from file to file (duplicate before doing something).
+	 * @param from
+	 * @param to
+	 */
 	public static void copyFile(File from, File to) {
 		try {
 	    	Files.copy(from.toPath(), to.toPath());
